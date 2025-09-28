@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberAudit - Сканер безопасности веб-сайтов</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>CyberAudit</span>
+                </div>
+                <nav class="nav">
+                    <a href="#home" class="nav-link active">Главная</a>
+                    <a href="#features" class="nav-link">Возможности</a>
+                    <a href="#stats" class="nav-link">Статистика</a>
+                    <div class="language-selector">
+                        <select id="languageSelect">
+                            <option value="ru">🇷🇺 Русский</option>
+                            <option value="uz">🇺🇿 O'zbek</option>
+                        </select>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Комплексный анализ<br>
+                        <span class="gradient-text">кибербезопасности</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Профессиональное сканирование веб-сайтов на предмет уязвимостей безопасности.
+                        Получите детальный отчет и сертификат безопасности для вашего сайта.
+                    </p>
+                    
+                    <!-- Scan Form -->
+                    <div class="scan-form">
+                        <div class="scan-input-group">
+                            <input 
+                                type="url" 
+                                id="urlInput" 
+                                placeholder="Введите URL сайта (например: example.com)"
+                                class="scan-input"
+                            >
+                            <button id="scanButton" class="scan-button">
+                                <i class="fas fa-search"></i>
+                                Сканировать
+                            </button>
+                        </div>
+                        
+                        <!-- Scan Options -->
+                        <div class="scan-options">
+                            <div class="scan-types">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="ssl" checked>
+                                    <span class="checkmark"></span>
+                                    SSL/HTTPS
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="ports" checked>
+                                    <span class="checkmark"></span>
+                                    Порты
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="headers" checked>
+                                    <span class="checkmark"></span>
+                                    Заголовки
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="cms">
+                                    <span class="checkmark"></span>
+                                    CMS/CVE
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="ddos">
+                                    <span class="checkmark"></span>
+                                    DDoS защита
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="security-dashboard">
+                        <div class="dashboard-card">
+                            <div class="score-circle">
+                                <span class="score-number">87</span>
+                                <span class="score-label">Балл</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-metrics">
+                            <div class="metric">
+                                <i class="fas fa-lock text-green"></i>
+                                <span>SSL: Отлично</span>
+                            </div>
+                            <div class="metric">
+                                <i class="fas fa-shield-check text-blue"></i>
+                                <span>Заголовки: Хорошо</span>
+                            </div>
+                            <div class="metric">
+                                <i class="fas fa-network-wired text-orange"></i>
+                                <span>Порты: Внимание</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="modal">
+        <div class="modal-content loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Сканирование в процессе...</h3>
+            <p id="loadingText">Анализируем SSL сертификаты...</p>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div id="resultsModal" class="modal">
+        <div class="modal-content results-content">
+            <span class="close">&times;</span>
+            <div id="scanResults"></div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Возможности платформы</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>SSL/HTTPS Анализ</h3>
+                    <p>Проверка сертификатов, протоколов шифрования и настроек HTTPS</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Сканирование портов</h3>
+                    <p>Определение открытых портов и потенциальных точек входа</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <h3>HTTP заголовки</h3>
+                    <p>Анализ заголовков безопасности: HSTS, CSP, X-Frame-Options</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3>Поиск уязвимостей</h3>
+                    <p>Определение CMS и известных уязвимостей CVE</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>PDF отчеты</h3>
+                    <p>Генерация сертификатов и детальных отчетов с рекомендациями</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Многоязычность</h3>
+                    <p>Поддержка русского и узбекского языков</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats">
+        <div class="container">
+            <h2 class="section-title">Статистика платформы</h2>
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalScans">1,247</div>
+                    <div class="stat-label">Всего сканирований</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="certificates">892</div>
+                    <div class="stat-label">Выдано сертификатов</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="activeUsers">156</div>
+                    <div class="stat-label">Активных пользователей</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Мониторинг</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>CyberAudit</span>
+                    </div>
+                    <p>Профессиональная платформа для анализа кибербезопасности веб-сайтов</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Функции</h4>
+                    <ul>
+                        <li><a href="#features">SSL анализ</a></li>
+                        <li><a href="#features">Сканирование портов</a></li>
+                        <li><a href="#features">Проверка заголовков</a></li>
+                        <li><a href="#features">Поиск уязвимостей</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Поддержка</h4>
+                    <ul>
+                        <li><a href="/docs">Документация API</a></li>
+                        <li><a href="#stats">Статистика</a></li>
+                        <li><a href="mailto:support@cyberaudit.com">Поддержка</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CyberAudit. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
